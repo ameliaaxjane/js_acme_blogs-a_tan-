@@ -100,7 +100,7 @@ async function getUsers() {
 }
 
 async function getUserPosts(userId) {
-    if (!userId) return undefined;  // Changed from [] to undefined
+    if (!userId) return undefined;  
     try {
         const response = await fetch(`https://jsonplaceholder.typicode.com/posts?userId=${userId}`);
         const posts = await response.json();
@@ -215,9 +215,9 @@ async function displayPosts(posts) {
     return element; 
 }
 function toggleComments(event, postId) {
-    if (!event || !postId) return undefined;  // Check if both parameters are provided
+    if (!event || !postId) return undefined;
     
-    event.target.listener = true;  // Safe to access event.target now
+    event.target.listener = true;  
     const section = toggleCommentSection(postId);
     const button = toggleCommentButton(postId);
     
@@ -270,22 +270,17 @@ async function refreshPosts(data){
     }
 }
 
-
-
-// 20. Initialize the page by fetching users and populating the select menu
 async function initPage() {
     const users = await getUsers();
     const select = populateSelectMenu(users);
     return [users, select];
 }
 
-// 21. Initialize the app by setting up event listeners
 function initApp() {
     initPage();
     const selectMenu = document.getElementById("selectMenu");
     selectMenu.addEventListener("change", selectMenuChangeEventHandler);
 }
 
-// Add event listener when DOM content is loaded
 document.addEventListener("DOMContentLoaded", initApp);
 
